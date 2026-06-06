@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TallerHub | Plataforma Automotriz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">⚡ Taller<span>Hub</span></div>
+            <div class="nav-date" id="fechaActual"></div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <section id="inicio" class="inicio activo">
+            <header class="search-hero">
+                <h1>BIENVENIDO A TALLERHUB</h1>
+                <p>Encuentra el taller mecánico más cercano o registra tu establecimiento en la red.</p>
+
+                <img src="img/taller.jpg" alt="taller" class="hero-image">
+
+                <div class="botones-container">
+                    <button class="btn-primary" onclick="mostrarPantalla('login')">INICIAR SESIÓN</button>
+                    <button class="btn-secondary" onclick="mostrarPantalla('registro')">REGISTRARSE</button>
+                </div>
+            </header>
+        </section>
+
+        <section id="registro" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('inicio')">← Regresar al Inicio</div>
+
+            <div class="split-cards">
+                <div class="form-card text-center">
+                    <h2>COMO USUARIO</h2>
+                    <img src="img/usuario.jpg" alt="usuario" class="card-image">
+                    <p>Encuentra talleres y agenda citas.</p>
+                    <button class="btn-primary" onclick="mostrarPantalla('nuevoUsuario')">REGISTRO USUARIO</button>
+                </div>
+
+                <div class="form-card text-center">
+                    <h2>COMO TALLER</h2>
+                    <img src="img/taller2.jpg" alt="taller" class="card-image">
+                    <p>Ofrece tus servicios en la plataforma.</p>
+                    <button class="btn-secondary" onclick="mostrarPantalla('nuevoTaller')">REGISTRO TALLER</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('inicio')">← Regresar</div>
+            <div class="form-card form-center">
+                <h2>INICIAR SESIÓN</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Correo electrónico">
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <button class="btn-primary btn-full">ENTRAR</button>
+            </div>
+        </section>
+
+        <section id="nuevoUsuario" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('registro')">← Regresar</div>
+            <div class="form-card form-center">
+                <h2>NUEVO USUARIO</h2>
+                <div class="input-group">
+                    <input type="text" id="nombreUsuario" placeholder="Nombre">
+                    <input type="text" id="apellidoUsuario" placeholder="Apellido">
+                    <input type="email" id="correoUsuario" placeholder="Correo electrónico">
+                    <input type="password" id="passwordUsuario" placeholder="Contraseña">
+                    <input type="text" id="telefonoUsuario" placeholder="Teléfono">
+                </div>
+                <button class="btn-primary btn-full" onclick="validarUsuario()">COMPLETAR REGISTRO</button>
+            </div>
+        </section>
+
+        <section id="nuevoTaller" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('registro')">← Regresar</div>
+            <div class="form-card form-center">
+                <h2>NUEVO TALLER</h2>
+                <div class="input-group">
+                    <input type="text" id="nombreTaller" placeholder="Nombre del taller">
+                    <input type="text" id="especialidadTaller" placeholder="Especialidad (Ej. Frenos, General)">
+                    <input type="text" id="direccionTaller" placeholder="Dirección completa">
+                    <input type="text" id="telefonoTaller" placeholder="Teléfono de contacto">
+                    <input type="email" id="correoTaller" placeholder="Correo electrónico">
+                    <input type="text" id="horarioTaller" placeholder="Horario de atención">
+                    <input type="password" id="passwordTaller" placeholder="Contraseña de acceso">
+                </div>
+                <button class="btn-secondary btn-full" onclick="validarTaller()">REGISTRAR TALLER</button>
+            </div>
+        </section>
+
+        <section id="talleres" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('inicio')">← Regresar al Inicio</div>
+
+            <header class="section-header">
+                <h2>TALLERES CERCA DE TI</h2>
+                <p id="ubicacion" class="badge-success">Buscando ubicación...</p>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="workshop-card">
+                    <img src="img/taller3.jpg" alt="taller">
+                    <div class="card-content">
+                        <h3>Taller Mecánico López</h3>
+                        <p class="specialty">📍 Coapa CDMX</p>
+                        <p class="rating">Calificación: ★★★★★</p>
+                        <p class="phone">📞 55 43207650</p>
+                        <button class="btn-primary btn-sm" onclick="mostrarPantalla('citaExitosa')">AGENDAR
+                            CITA</button>
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <img src="img/taller4.jpg" alt="taller">
+                    <div class="card-content">
+                        <h3>Taller Express</h3>
+                        <p class="specialty">📍 Centro CDMX</p>
+                        <p class="rating">Calificación: ★★★★☆</p>
+                        <p class="phone">📞 55 43198460</p>
+                        <button class="btn-primary btn-sm" onclick="mostrarPantalla('citaExitosa')">AGENDAR
+                            CITA</button>
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <img src="img/taller5.jpg" alt="taller">
+                    <div class="card-content">
+                        <h3>Servicio Automotriz JR</h3>
+                        <p class="specialty">📍 Acoxpa CDMX</p>
+                        <p class="rating">Calificación: ★★★☆☆</p>
+                        <p class="phone">📞 55 65784939</p>
+                        <button class="btn-primary btn-sm" onclick="mostrarPantalla('citaExitosa')">AGENDAR
+                            CITA</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recomendaciones" class="pantalla">
+            <div class="regresar" onclick="mostrarPantalla('inicio')">← Regresar al Inicio</div>
+
+            <header class="section-header">
+                <h2>RECOMENDACIÓN DIARIA PARA TU TALLER</h2>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="form-card text-center">
+                    <h3>Redes Sociales</h3>
+                    <p>Publica promociones y servicios en Facebook, Instagram y TikTok para atraer más clientes.</p>
+                </div>
+                <div class="form-card text-center">
+                    <h3> Mejora tu Atención</h3>
+                    <p>Mantén buena comunicación con tus clientes informándoles el estado de su vehículo.</p>
+                </div>
+                <div class="form-card text-center">
+                    <h3>Nuevos Servicios</h3>
+                    <p>Agrega servicios modernos (como escáner por computadora) para destacar sobre la competencia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="citaExitosa" class="pantalla">
+            <div class="form-card form-center text-center success-box">
+                <h2>¡CITA AGENDADA EXITOSAMENTE!</h2>
+                <img src="img/exito.jpg" alt="exito" class="card-image circular-image">
+                <p>Tu cita fue registrada correctamente. El taller se pondrá en contacto contigo a la brevedad.</p>
+                <button class="btn-primary" onclick="mostrarPantalla('inicio')">VOLVER AL INICIO</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
